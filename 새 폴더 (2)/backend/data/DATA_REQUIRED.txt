@@ -1,0 +1,1 @@
+기존 NDVM 백엔드의 flood_damage_long.csv 및 flood_damage_quality_report.csv를 이 폴더에 복사하세요. 원본 데이터 파일은 이 ZIP에 포함되지 않았습니다.

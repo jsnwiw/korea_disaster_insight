@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>NDVM | 자연재해 취약지역 지도</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+  <link rel="stylesheet" href="./styles.css?v=20261124v8">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script>window.NDVM_API_BASE = localStorage.getItem("ndvm-api-base") || "http://127.0.0.1:8000";</script>
+  <!-- Modularized Application Scripts -->
+  <script src="./js/constants.js?v=20261111v3" defer></script>
+  <script src="./js/state.js?v=20261111v3" defer></script>
+  <script src="./js/pages.js?v=20261111v3" defer></script>
+  <script src="./js/dynamic-vulnerability.js?v=20261114v4" defer></script>
+  <script src="./js/map.js?v=20261114v11" defer></script>
+  <script src="./js/weather.js?v=20261111v3" defer></script>
+  <script src="./js/shelter.js?v=20261111v3" defer></script>
+  <script src="./js/stats.js?v=20261111v3" defer></script>
+  <script src="./js/alerts.js?v=20261111v3" defer></script>
+  <script src="./js/safety.js?v=20261111v3" defer></script>
+  <script src="./js/vendor/qrcode-offline.js?v=20261111v3" defer></script>
+  <script src="./js/safety-extras.js?v=20261111v3" defer></script>
+  <script src="./js/demo-stepper.js?v=20261124v2" defer></script>
+  <script src="./app.js?v=20261124v2" defer></script>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <script>if ('serviceWorker' in navigator && location.protocol !== 'file:') { window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {})); }</script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <button type="button" class="brand" data-page="demo-1" aria-label="NDVM 1단계 목적 설명으로 이동">
+        <span class="brand-logo" aria-hidden="true">N</span>
+        <span class="brand-name"><strong>NDVM</strong><small>자연재해 취약지역 지도</small></span>
+      </button>
+      <div class="top-actions">
+        <button type="button" class="top-rainfall-link" onclick="window.goDemoStep(1)" style="background:#0f172a;color:#ffffff;border-color:#0f172a;font-weight:700;">🎬 7단계 시연</button>
+        <button type="button" class="top-rainfall-link" data-page="demo-2">지도 탐색</button>
+        <button type="button" class="top-rainfall-link" data-page="demo-5" style="background:#eaf6f3;color:#205e5d;border-color:#bedad3;font-weight:700;">안전동행 5대도구</button>
+        <span class="status-label">DEMO / PROTOTYPE</span>
+        <button type="button" id="menu-toggle" class="menu-toggle" aria-label="전체 메뉴 열기" aria-controls="menu-drawer" aria-expanded="false">
+          <span class="hamburger" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span>메뉴</span>
+        </button>
+      </div>
+    </header>
+    <div id="ndvm-alert-ticker-container"></div>
+    <div id="menu-overlay" class="menu-overlay" hidden></div>
+    <aside id="menu-drawer" class="menu-drawer" aria-label="전체 메뉴" aria-hidden="true">
+      <div class="drawer-heading">
+        <div><span class="eyebrow">NAVIGATION</span><h2>전체 메뉴</h2></div>
+        <button id="menu-close" class="close-button" type="button" aria-label="메뉴 닫기">×</button>
+      </div>
+      <nav id="drawer-nav" class="drawer-nav" aria-label="페이지 이동"></nav>
+      <div class="drawer-foot">NDVM · NATURAL DISASTER VULNERABILITY MAP</div>
+    </aside>
+    <main id="content" tabindex="-1"></main>
+    <footer class="footer"><span>NDVM · Natural Disaster Vulnerability Map</span><span>과거 피해 데이터 기반 시범 분석 · 공식 재난 안내 우선</span></footer>
+  </div>
+  <section id="ndvm-print-sheet" hidden aria-hidden="true"></section>
+</body>
+</html>
